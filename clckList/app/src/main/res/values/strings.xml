@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">clckList</string>
+    <string name="pick_a_dice">Pick a dice:</string>
+    <string name="dice_4">four-sided dice</string>
+    <string name="dice_6">six-sided dice</string>
+    <string name="dice_8">eight-sided dice</string>
+    <string name="dice_10">ten-sided dice</string>
+    <string name="dice_12">twelve-sided dice</string>
+    <string name="dice_20">twenty-sided dice</string>
+    <string name="double_dice_100">double dices 10x10</string>
+    <string-array name="dicesArray">
+        <item>@string/dice_4</item>
+        <item>@string/dice_6</item>
+        <item>@string/dice_8</item>
+        <item>@string/dice_10</item>
+        <item>@string/dice_12</item>
+        <item>@string/dice_20</item>
+        <item>@string/double_dice_100</item>
+    </string-array>
+
+</resources>

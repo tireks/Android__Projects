@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">clckList</string>
+    <string name="pick_a_dice">Выберите кубик:</string>
+    <string name="dice_4">4-хгранный кубик</string>
+    <string name="dice_6">6-игранный кубик</string>
+    <string name="dice_8">8-игранный кубик</string>
+    <string name="dice_10">10-игранный кубик</string>
+    <string name="dice_12">12-игранный кубик</string>
+    <string name="dice_20">20-игранный кубик</string>
+    <string name="double_dice_100">10х10 двойной</string>
+</resources>
