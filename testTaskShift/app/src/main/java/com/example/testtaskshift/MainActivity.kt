@@ -3,6 +3,7 @@ package com.example.testtaskshift
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.app.DatePickerDialog
+import android.app.ProgressDialog.show
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -83,120 +84,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    fun checkInputsDate(year: Int, month: Int, day: Int, todayYear : Int, todayMonth: Int, todayDay : Int){
-        if(((year == todayYear - 18) && (month > todayMonth || (month == todayMonth && day > todayDay)))
-            || year > todayYear - 18){
-
-            if (binding.textViewBirthdateWarn.visibility == View.INVISIBLE) {
-                binding.editTextBirthdate.setTextColor(Color.RED);
-                binding.textViewBirthdateWarn.visibility = View.VISIBLE;
-                validCont.validsUpdate("Birthdate", false)
-                Toast.makeText(applicationContext,
-                    "False",
-                    Toast.LENGTH_SHORT).show();
-            }
-        } else{
-            binding.textViewBirthdateWarn.visibility = View.INVISIBLE;
-            binding.editTextBirthdate.setTextColor(Color.BLACK);
-            validCont.validsUpdate("Birthdate", true)
-            Toast.makeText(applicationContext,
-                "True",
-                Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    fun checkInputsText(text : Editable?, switchString : String){
-        val texts : String = text.toString();
-        when (switchString){
-            "Name" -> {
-                if (texts.count() <= 2 || texts.contains("[0-9]".toRegex())){
-                    if (binding.textViewNameWarn.visibility == View.INVISIBLE) {
-                        binding.editTextName.setTextColor(Color.RED);
-                        binding.textViewNameWarn.visibility = View.VISIBLE;
-                        validCont.validsUpdate(switchString, false)
-                    }
-
-                } else {
-                    if (binding.textViewNameWarn.visibility == View.VISIBLE) {
-                        binding.textViewNameWarn.visibility = View.INVISIBLE;
-                        binding.editTextName.setTextColor(Color.BLACK);
-                        validCont.validsUpdate(switchString, true)
-                        //todo вот тут и изменения валидов и работа с контроллером доступа кнопки и так во всех остальных
-                    }
-                }
-            }
-            "Surname" -> {
-                if (texts.count() <= 2 || texts.contains("[0-9]".toRegex())){
-                    if (binding.textViewSurnameWarn.visibility == View.INVISIBLE) {
-                        binding.editTextSurname.setTextColor(Color.RED);
-                        binding.textViewSurnameWarn.visibility = View.VISIBLE;
-                        validCont.validsUpdate(switchString, false)
-                    }
-
-                } else {
-                    if (binding.textViewSurnameWarn.visibility == View.VISIBLE) {
-                        binding.textViewSurnameWarn.visibility = View.INVISIBLE;
-                        binding.editTextSurname.setTextColor(Color.BLACK);
-                        validCont.validsUpdate(switchString, true)
-                        //todo вот тут и изменения валидов и работа с контроллером доступа кнопки и так во всех остальных
-                    }
-                }
-            }
-            "Lastname" -> {
-                if (texts.count() <= 2 || texts.contains("[0-9]".toRegex())){
-                    if (binding.textViewLastnameWarn.visibility == View.INVISIBLE) {
-                        binding.editTextLastname.setTextColor(Color.RED);
-                        binding.textViewLastnameWarn.visibility = View.VISIBLE;
-                        validCont.validsUpdate(switchString, false)
-                    }
-
-                } else {
-                    if (binding.textViewLastnameWarn.visibility == View.VISIBLE) {
-                        binding.textViewLastnameWarn.visibility = View.INVISIBLE;
-                        binding.editTextLastname.setTextColor(Color.BLACK);
-                        validCont.validsUpdate(switchString, true)
-                        //todo вот тут и изменения валидов и работа с контроллером доступа кнопки и так во всех остальных
-                    }
-                }
-            }
-            "PassInp" -> {
-                if (texts.count() <= 6 || !texts.contains("[0-9]".toRegex()) || !texts.contains("[a-z]".toRegex()) || !texts.contains("[A-Z]".toRegex())) {
-                    if (binding.textViewPassInpWarn.visibility == View.INVISIBLE) {
-                        binding.editTextPassInp.setTextColor(Color.RED);
-                        binding.textViewPassInpWarn.visibility = View.VISIBLE;
-                        validCont.validsUpdate(switchString, false)
-
-                    }
-                } else {
-                    if (binding.textViewPassInpWarn.visibility == View.VISIBLE) {
-                        binding.textViewPassInpWarn.visibility = View.INVISIBLE;
-                        binding.editTextPassInp.setTextColor(Color.BLACK);
-                        validCont.validsUpdate(switchString, true)
-                    }
-                }
-            }
-            "PassCheck" -> {
-                if (text.toString() != binding.editTextPassInp.text.toString()) {
-                    if (binding.textViewPassCheckWarn.visibility == View.INVISIBLE) {
-                        binding.editTextPassCheck.setTextColor(Color.RED);
-                        binding.textViewPassCheckWarn.visibility = View.VISIBLE;
-                        validCont.validsUpdate(switchString, false)
-                    }
-
-                } else {
-                    if (binding.textViewPassCheckWarn.visibility == View.VISIBLE) {
-                        binding.textViewPassCheckWarn.visibility = View.INVISIBLE;
-                        binding.editTextPassCheck.setTextColor(Color.BLACK);
-                        validCont.validsUpdate(switchString, true)
-                    }
-                }
-            }
-
-        }
-
-    }
-
-
     fun registration(){
         if (validCont.accessController()){
             val dataToSecondActivity = binding.editTextName.text.toString() + " " + binding.editTextSurname.text.toString() + " " + binding.editTextLastname.text.toString();
@@ -214,25 +101,101 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun confirmAccessChecker(numAttribute : Int, validStatus : Boolean){
+    fun checkInputsDate(year: Int, month: Int, day: Int, todayYear : Int, todayMonth: Int, todayDay : Int){
+        if(((year == todayYear - 18) && (month > todayMonth || (month == todayMonth && day > todayDay)))
+            || year > todayYear - 18){
+            if (binding.textViewBirthdateWarn.visibility == View.INVISIBLE) {
+                showAlert(binding.editTextBirthdate, binding.textViewBirthdateWarn, validCont, "Birthdate");
+            }
+        } else{
+            cancelAlert(binding.editTextBirthdate, binding.textViewBirthdateWarn, validCont, "Birthdate")
+        }
+    }
 
+    fun checkInputsText(text : Editable?, switchString : String){
+        val texts : String = text.toString();
+        when (switchString){
+            "Name" -> {
+                if (texts.count() <= 2 || texts.contains("[^a-zA-Z]".toRegex())){
+                    if (binding.textViewNameWarn.visibility == View.INVISIBLE) {
+                        showAlert(binding.editTextName, binding.textViewNameWarn, validCont, switchString);
+                    }
+                } else {
+                    if (binding.textViewNameWarn.visibility == View.VISIBLE) {
+                        cancelAlert(binding.editTextName, binding.textViewNameWarn, validCont, switchString)
+                    }
+                }
+            }
+            "Surname" -> {
+                if (texts.count() <= 2 || texts.contains("[^a-zA-Z]".toRegex())){
+                    if (binding.textViewSurnameWarn.visibility == View.INVISIBLE) {
+                        showAlert(binding.editTextSurname, binding.textViewSurnameWarn, validCont, switchString)
+                    }
+
+                } else {
+                    if (binding.textViewSurnameWarn.visibility == View.VISIBLE) {
+                        cancelAlert(binding.editTextSurname, binding.textViewSurnameWarn, validCont, switchString)
+                    }
+                }
+            }
+            "Lastname" -> {
+                if (texts.count() <= 2 || texts.contains("[^a-zA-Z]".toRegex())){
+                    if (binding.textViewLastnameWarn.visibility == View.INVISIBLE) {
+                        showAlert(binding.editTextLastname, binding.textViewLastnameWarn, validCont, switchString)
+                    }
+
+                } else {
+                    if (binding.textViewLastnameWarn.visibility == View.VISIBLE) {
+                        cancelAlert(binding.editTextLastname, binding.textViewLastnameWarn, validCont, switchString)
+                    }
+                }
+            }
+            "PassInp" -> {
+                if (texts.count() <= 6 || !texts.contains("[0-9]".toRegex()) || !texts.contains("[a-z]".toRegex()) || !texts.contains("[A-Z]".toRegex())) {
+                    if (binding.textViewPassInpWarn.visibility == View.INVISIBLE) {
+                        showAlert(binding.editTextPassInp, binding.textViewPassInpWarn, validCont, switchString)
+                    }
+                } else {
+                    if (binding.textViewPassInpWarn.visibility == View.VISIBLE) {
+                        cancelAlert(binding.editTextPassInp, binding.textViewPassInpWarn, validCont, switchString)
+                    }
+                }
+                if (text.toString() != binding.editTextPassCheck.text.toString()) {
+                    if (binding.textViewPassCheckWarn.visibility == View.INVISIBLE) {
+                        showAlert(binding.editTextPassCheck, binding.textViewPassCheckWarn, validCont, "PassCheck")
+                    }
+                }
+            }
+            "PassCheck" -> {
+                if (text.toString() != binding.editTextPassInp.text.toString()) {
+                    if (binding.textViewPassCheckWarn.visibility == View.INVISIBLE) {
+                        showAlert(binding.editTextPassCheck, binding.textViewPassCheckWarn, validCont, switchString)
+                    }
+
+                } else {
+                    if (binding.textViewPassCheckWarn.visibility == View.VISIBLE) {
+                        cancelAlert(binding.editTextPassCheck, binding.textViewPassCheckWarn, validCont, switchString)
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    fun showAlert(editTxt : EditText, txtViewWarn : TextView, validCont_ : ValidationContainer, switchString : String){
+        editTxt.setTextColor(Color.RED);
+        txtViewWarn.visibility = View.VISIBLE;
+        validCont_.validsUpdate(switchString, false)
+    }
+    fun cancelAlert(editTxt : EditText, txtViewWarn : TextView, validCont_ : ValidationContainer, switchString : String){
+        txtViewWarn.visibility = View.INVISIBLE;
+        editTxt.setTextColor(Color.BLACK);
+        validCont_.validsUpdate(switchString, true)
     }
 }
 
-/*{
-                        override fun onDateSet(
-                            view: DatePicker,
-                            year: Int,
-                            monthOfYear: Int,
-                            dayOfMonth: Int
-                        )
-                        {
-                            val editTextDateParam =
-                                dayOfMonth.toString() + "." + (monthOfYear + 1) + "." + year
-                            editTextDate.setText(editTextDateParam)
-                        }
-                    }, mYear, mMonth, mDay)
-                datePickerDialog.show()*/
+
 
 
 
