@@ -40,6 +40,4 @@ class ValidationContainer {
                 validStatusPassCheck
     }
 
-    fun debugFun() {
-    }
 }
