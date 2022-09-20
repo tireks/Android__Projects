@@ -3,20 +3,16 @@ package com.example.testtaskshift
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.app.DatePickerDialog
-import android.app.ProgressDialog.show
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.ColorStateList
 import android.graphics.Color
 import java.util.Calendar
 import android.view.View
 import com.example.testtaskshift.databinding.ActivityMainBinding;
-import android.icu.text.DateFormat;
 import android.text.Editable
 import android.widget.*
 import androidx.core.widget.doAfterTextChanged
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding;
