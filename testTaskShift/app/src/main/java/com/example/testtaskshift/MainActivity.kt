@@ -200,5 +200,3 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-//todo допилить регексы, там пропускает всякие небуквенные символы
-// todo вытащить все чеки отсюда в отдельный класс
