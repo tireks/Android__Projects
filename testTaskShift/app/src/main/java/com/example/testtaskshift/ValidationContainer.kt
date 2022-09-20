@@ -1,12 +1,12 @@
 package com.example.testtaskshift
 
 class ValidationContainer {
-    var validStatusName : Boolean = true;
-    var validStatusSurname : Boolean = true;
-    var validStatusLastname : Boolean = true;
-    //var validStatusBirthdate : Boolean = false;
-    var validStatusPassInp : Boolean = true;
-    var validStatusPassCheck : Boolean = true;
+    var validStatusName : Boolean = false;
+    var validStatusSurname : Boolean = false;
+    var validStatusLastname : Boolean = false;
+    var validStatusBirthdate : Boolean = false;
+    var validStatusPassInp : Boolean = false;
+    var validStatusPassCheck : Boolean = false;
 
     fun validsUpdate(validType : String, validStatusNew: Boolean){
         when (validType){
@@ -19,14 +19,14 @@ class ValidationContainer {
             "Lastname" ->{
                 validStatusLastname = validStatusNew;
             }
-            //"Birthdate" ->{
-                //validStatusBirthdate = validStatusNew;
-            //}
             "PassInp" ->{
                 validStatusPassInp = validStatusNew;
             }
             "PassCheck" ->{
                 validStatusPassCheck = validStatusNew;
+            }
+            "Birthdate" ->{
+                validStatusBirthdate = validStatusNew;
             }
         }
     }
@@ -35,7 +35,7 @@ class ValidationContainer {
         return validStatusName &&
                 validStatusSurname &&
                 validStatusLastname &&
-                //validStatusBirthdate &&
+                validStatusBirthdate &&
                 validStatusPassInp  &&
                 validStatusPassCheck
     }

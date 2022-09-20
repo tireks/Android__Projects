@@ -83,6 +83,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    fun checkInputsDate(year: Int, month: Int, day: Int, todayYear : Int, todayMonth: Int, todayDay : Int){
+        if(((year == todayYear - 18) && (month > todayMonth || (month == todayMonth && day > todayDay)))
+            || year > todayYear - 18){
+
+            if (binding.textViewBirthdateWarn.visibility == View.INVISIBLE) {
+                binding.editTextBirthdate.setTextColor(Color.RED);
+                binding.textViewBirthdateWarn.visibility = View.VISIBLE;
+                validCont.validsUpdate("Birthdate", false)
+                Toast.makeText(applicationContext,
+                    "False",
+                    Toast.LENGTH_SHORT).show();
+            }
+        } else{
+            binding.textViewBirthdateWarn.visibility = View.INVISIBLE;
+            binding.editTextBirthdate.setTextColor(Color.BLACK);
+            validCont.validsUpdate("Birthdate", true)
+            Toast.makeText(applicationContext,
+                "True",
+                Toast.LENGTH_SHORT).show();
+        }
+    }
 
     fun checkInputsText(text : Editable?, switchString : String){
         val texts : String = text.toString();
@@ -175,30 +196,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    fun checkInputsDate(year: Int, month: Int, day: Int, todayYear : Int, todayMonth: Int, todayDay : Int){
-        if(((year == todayYear - 18) && (month > todayMonth || (month == todayMonth && day > todayDay)))
-            || year > todayYear - 18){
-
-            if (binding.textViewBirthdateWarn.visibility == View.INVISIBLE) {
-                binding.editTextBirthdate.setTextColor(Color.RED);
-                binding.textViewBirthdateWarn.visibility = View.VISIBLE;
-                validCont.validsUpdate("Birthdate", false)
-                Toast.makeText(applicationContext,
-                    "False",
-                    Toast.LENGTH_SHORT).show();
-            }
-        } else{
-            if (binding.textViewBirthdateWarn.visibility == View.VISIBLE) {
-                binding.textViewBirthdateWarn.visibility = View.INVISIBLE;
-                binding.editTextBirthdate.setTextColor(Color.BLACK);
-                validCont.validsUpdate("Birthdate", true)
-                Toast.makeText(applicationContext,
-                    "True",
-                    Toast.LENGTH_SHORT).show();
-            }
-
-        }
-    }
 
     fun registration(){
         if (validCont.accessController()){
