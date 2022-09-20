@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">testTaskShift</string>
+    <string name="txtViewName">Введите имя:</string>
+    <string name="txtViewSurname">Введите фамилию:</string>
+    <string name="txtViewLastname">Введите отчество:</string>
+    <string name="txtViewBirthdate">Введите дату рождения:</string>
+    <string name="txtViewPassInp">Введите пароль:</string>
+    <string name="txtViewPassCheck">Подтвердите пароль:</string>
+    <string name="btnBirthdate">Выбрать</string>
+    <string name="btnConfirm">Зарегистрироваться</string>
+    <string name="txtViewNameWarn">Имя может содержать только буквы (не менее двух)</string>
+    <string name="txtViewSurnameWarn">Фамилия может содержать только буквы (не менее двух)</string>
+    <string name="txtViewLastnameWarn">Отчество может содержать только буквы (не менее двух)</string>
+    <string name="txtViewBirthdateWarn">Регистрация закрыта для несовершеннолетних</string>
+    <string name="txtViewPassInpWarn">Пароль должен содержать как минимум одну заглавную букву и одну цифру. Длина пароля не менее 6 символов</string>
+    <string name="txtViewPassCheckWarn">Пароли не совпадают</string>
+    <string name="btnGreeting">Нажмите для приветствия</string>
+    <string name="btnDropUser">Удалить пользователя</string>
 </resources>
