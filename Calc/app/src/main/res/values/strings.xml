@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Calc</string>
+    <string name="buttonNum1Str">1</string>
+    <string name="buttonNum2Str">2</string>
+    <string name="buttonNum3Str">3</string>
+    <string name="buttonNum4Str">4</string>
+    <string name="buttonNum5Str">5</string>
+    <string name="buttonNum6Str">6</string>
+    <string name="buttonNum7Str">7</string>
+    <string name="buttonNum8Str">8</string>
+    <string name="buttonNum9Str">9</string>
+    <string name="buttonNum0Str">0</string>
+    <string name="buttonLeftBracketStr">(</string>
+    <string name="buttonRightBracketStr">)</string>
+    <string name="buttonDotStr">.</string>
+    <string name="buttonOpEquStr">=</string>
+    <string name="buttonOpPlusStr">+</string>
+    <string name="buttonOpMinusStr">-</string>
+    <string name="buttonOpMultiplyStr">x</string>
+    <string name="buttonOpDivideStr">/</string>
 </resources>
