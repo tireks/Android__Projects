@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Rest_Test_2</string>
+    <string name="edit_text">Input</string>
+    <string name="btn">check search count</string>
 </resources>
