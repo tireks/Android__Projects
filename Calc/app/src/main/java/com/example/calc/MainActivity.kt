@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.buttonOpMinus.setOnClickListener(this);
         binding.buttonOpMultiply.setOnClickListener(this);
         binding.buttonOpPlus.setOnClickListener(this);
+        binding.buttonDel.setOnClickListener(this);
     }
 
     override fun onClick(view: View) {
@@ -88,6 +89,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             binding.buttonRightBracket -> {
                 binding.textViewInput.append(")");
+            }
+            binding.buttonDel -> {
+                binding.textViewInput.setText(binding.textViewInput.text.substring(0,binding.textViewInput.text.length - 1))
             }
         }
     }
