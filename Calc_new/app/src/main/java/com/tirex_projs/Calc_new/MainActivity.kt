@@ -2,12 +2,17 @@ package com.tirex_projs.Calc_new
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import com.tirex_projs.Calc_new.databinding.ActivityMainBinding;
+import com.tirex_projs.Calc_new.databinding.PopupWindowBinding
 
 class MainActivity : AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding;
+    private lateinit var bindingPop: PopupWindowBinding;
     private var bracketsCounter: Int = 0;
     private var blocker: Blocker = Blocker();
     private var cheker: Cheker = Cheker();
@@ -74,6 +79,13 @@ class MainActivity : AppCompatActivity(){
                 //all is ok
             }
             1 -> {
+                bindingPop = PopupWindowBinding.inflate(layoutInflater)
+                bindingPop.myTV.text = "Приветствуем, ";
+                val wid = LinearLayout.LayoutParams.WRAP_CONTENT
+                val high = LinearLayout.LayoutParams.WRAP_CONTENT
+                val focus = true
+                val popupWindow = PopupWindow(bindingPop.root, wid, high, focus)
+                popupWindow.showAtLocation(view, Gravity.CENTER, 0,0)
                 //open modal window
             }
             2 -> {

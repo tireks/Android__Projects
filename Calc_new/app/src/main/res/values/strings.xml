@@ -20,4 +20,6 @@
     <string name="buttonOpDivideStr">/</string>
     <string name="buttonDelStr">Del</string>
     <string name="buttonACStr">AC</string>
+    <string name="buttonPopOkStr">Ok</string>
+    <string name="buttonPopFixStr">Fix it</string>
 </resources>
