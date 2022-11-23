@@ -1,5 +1,4 @@
 package com.tirex_projs.Calc_new
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
@@ -80,7 +79,7 @@ class MainActivity : AppCompatActivity(){
             }
             1 -> {
                 bindingPop = PopupWindowBinding.inflate(layoutInflater)
-                bindingPop.myTV.text = "Приветствуем, ";
+                bindingPop.myTV.text = "sorry, the quantity '(' and ')' doesn't seem to match";
                 val wid = LinearLayout.LayoutParams.WRAP_CONTENT
                 val high = LinearLayout.LayoutParams.WRAP_CONTENT
                 val focus = true
@@ -89,7 +88,13 @@ class MainActivity : AppCompatActivity(){
                 //open modal window
             }
             2 -> {
-                //open modal window
+                bindingPop = PopupWindowBinding.inflate(layoutInflater)
+                bindingPop.myTV.text = "sorry, it seems the expression contains unnecessary brackets";
+                val wid = LinearLayout.LayoutParams.WRAP_CONTENT
+                val high = LinearLayout.LayoutParams.WRAP_CONTENT
+                val focus = true
+                val popupWindow = PopupWindow(bindingPop.root, wid, high, focus)
+                popupWindow.showAtLocation(view, Gravity.CENTER, 0,0)
             }
         }
     }
