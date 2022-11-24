@@ -57,25 +57,25 @@
             >
 
             <Button
-                android:id="@+id/Button3"
+                android:id="@+id/OkButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:background="@color/purple_blue"
-                android:onClick="opButtonOnClick"
+                android:onClick="popUpButtonOnClick"
                 android:text="@string/buttonPopOkStr"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 
             <Button
-                android:id="@+id/plusButton"
+                android:id="@+id/FixButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
                 android:background="@color/purple_blue"
-                android:onClick="opButtonOnClick"
+                android:onClick="popUpButtonOnClick"
                 android:text="@string/buttonPopFixStr"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
