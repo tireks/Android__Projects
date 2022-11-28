@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
         wm.updateViewLayout(container, p)
     }
 
-    private fun showPopUp(warnString: String, view: View) : PopupWindow{
+    private fun showPopUp(warnString: String, view: View, errorCode : Int) : PopupWindow{
         bindingPop = PopupWindowBinding.inflate(layoutInflater)
         bindingPop.myTV.text = warnString;
         val wid = LinearLayout.LayoutParams.WRAP_CONTENT
@@ -99,13 +99,21 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
                 popupWindow.dismiss()
             }
         })
+        bindingPop.FixButton.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                binding.TVInput.text = cheker.fixInputString()
+                //binding.TVInput.text = "123"
+                popupWindow.dismiss()
+            }
+        })
         return popupWindow
     }
 
     override fun onClick(view: View) {
         var popupWindow : PopupWindow = PopupWindow()
         if (!blocker.isBlocked(view)){
-            when (val errorCode = cheker.fullCheck(binding.TVInput.text.toString())){
+            cheker.setTestableStr(binding.TVInput.text.toString())
+            when (val errorCode = cheker.fullCheck()){
                 0 -> {
                 //all is ok
                 }
@@ -116,7 +124,7 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
                     }else {
                         "sorry, it seems the expression contains unnecessary brackets"
                     }
-                    popupWindow = showPopUp(warnString, view)
+                    popupWindow = showPopUp(warnString, view, errorCode)
                 }
             }
 
