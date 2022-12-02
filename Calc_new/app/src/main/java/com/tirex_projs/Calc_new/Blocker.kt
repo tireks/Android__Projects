@@ -122,6 +122,7 @@ class Blocker {
                 when (view.text) {
                     "(" -> {
                         unblockButton(binding.minusButton)
+                        unblockButton(binding.bracketLeftButton)
                     }
                     ")" -> {
                         unblockButton(binding.divideButton)
@@ -129,6 +130,7 @@ class Blocker {
                         unblockButton(binding.plusButton)
                         unblockButton(binding.minusButton)
                         unblockButton(binding.equButton)
+                        unblockButton(binding.bracketRightButton)
                     }
                     "+" -> {
                         unblockButton(binding.bracketLeftButton)

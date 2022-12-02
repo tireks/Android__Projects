@@ -10,6 +10,10 @@ class Cheker {
 
     fun setTestableStr(String: String){
         testableString = String
+        errorCode = 0;
+        bracketCounter = 0;
+        bracketsPositions[0] = 0;
+        bracketsPositions[1] = 0;
     }
     fun fullCheck() : Int {
         val notEnoughBrackets : Boolean = notEnoughBrackets()
@@ -108,7 +112,9 @@ class Cheker {
                     }
                     if (errorCheck) {
                         stringBuilder = stringBuilder.deleteAt(bracketsPositions[0])
+                        bracketCounter--;
                         stringBuilder = stringBuilder.deleteAt(bracketsPositions[1] - 1)
+                        bracketCounter++;
                         testableString = stringBuilder.toString()
                     }
                 } while (errorCheck)
