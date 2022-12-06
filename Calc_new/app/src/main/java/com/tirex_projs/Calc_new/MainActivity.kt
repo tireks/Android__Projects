@@ -14,11 +14,12 @@ import com.tirex_projs.Calc_new.databinding.PopupWindowBinding
 
 
 class MainActivity : AppCompatActivity(),  View.OnClickListener {
-    private lateinit var binding: ActivityMainBinding;
-    private lateinit var bindingPop: PopupWindowBinding;
-    private var bracketsCounter: Int = 0;
-    private var blocker: Blocker = Blocker();
-    private var cheker: Cheker = Cheker();
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var bindingPop: PopupWindowBinding
+    private var bracketsCounter: Int = 0
+    private var blocker: Blocker = Blocker()
+    private var cheker: Cheker = Cheker()
+    private var calculator : ExpressionSolver = ExpressionSolver()
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -85,15 +86,15 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
 
     private fun showPopUp(warnString: String, view: View, errorCode : Int) : PopupWindow{
         bindingPop = PopupWindowBinding.inflate(layoutInflater)
-        bindingPop.myTV.text = warnString;
+        bindingPop.myTV.text = warnString
         val wid = LinearLayout.LayoutParams.WRAP_CONTENT
         val high = LinearLayout.LayoutParams.WRAP_CONTENT
         val focus = true
         val popupWindow = PopupWindow(bindingPop.root, wid, high, false)
         popupWindow.showAtLocation(view, Gravity.CENTER, 0,0)
         popupWindow.dimBehind()
-        popupWindow.isOutsideTouchable = false;
-        popupWindow.isTouchable = true;
+        popupWindow.isOutsideTouchable = false
+        popupWindow.isTouchable = true
         bindingPop.OkButton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 popupWindow.dismiss()
@@ -115,7 +116,7 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
             cheker.setTestableStr(binding.TVInput.text.toString())
             when (val errorCode = cheker.fullCheck()){
                 0 -> {
-                //all is ok
+                    binding.TVResult.text = calculator.solveExpression(binding.TVInput.text.toString())
                 }
                 1,2 -> {
                     var warnString = ""
