@@ -71,13 +71,13 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
         } else {
             acButtonOnClick(binding.acButton)
         }
-
+        binding.TVResult.text = ""
     }
 
     private fun PopupWindow.dimBehind() {
         val container = contentView.rootView
         val context = contentView.context
-        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val wm = context.getSystemService(WINDOW_SERVICE) as WindowManager
         val p = container.layoutParams as WindowManager.LayoutParams
         p.flags = p.flags or WindowManager.LayoutParams.FLAG_DIM_BEHIND
         p.dimAmount = 0.9f
@@ -116,7 +116,8 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
             cheker.setTestableStr(binding.TVInput.text.toString())
             when (val errorCode = cheker.fullCheck()){
                 0 -> {
-                    binding.TVResult.text = calculator.solveExpression(binding.TVInput.text.toString())
+                    binding.TVResult.text = calculator.solveExpression(binding.TVInput.text.toString()).toString()
+                    //binding.TVResult.text = calculator.solveExpression(binding.TVInput.text.toString())
                 }
                 1,2 -> {
                     var warnString = ""
