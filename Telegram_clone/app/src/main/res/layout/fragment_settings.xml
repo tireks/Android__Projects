@@ -69,10 +69,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settings_account_number_info_btn"
+        style="@style/settingsAccButtons"
         app:layout_constraintTop_toBottomOf="@id/settings_accountLabel_TV"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/settingsAccButtons">
+        >
         <TextView
             android:id="@+id/settings_account_number_info_TV"
             app:layout_constraintTop_toTopOf="@id/settings_account_number_info_btn"
@@ -127,13 +128,13 @@
             android:id="@+id/settings_account_BIO_info_TV"
             app:layout_constraintTop_toTopOf="@id/settings_account_BIO_info_btn"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/settings_account_nickname"
+            android:text="@string/settings_account_BIO"
             style="@style/normalText" />
         <TextView
             android:id="@+id/settings_account_BIO_label_TV"
             app:layout_constraintTop_toBottomOf="@id/settings_account_BIO_info_TV"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/settings_account_nickname_label"
+            android:text="@string/settings_account_BIO_label"
             style="@style/smallText" />
         <View
             app:layout_constraintTop_toBottomOf="@id/settings_account_BIO_label_TV"
@@ -141,6 +142,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             style="@style/dividerLight" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/settings_header_btn_change_user_photo"
+        android:layout_width="@dimen/settings_header_photo_width"
+        android:layout_height="@dimen/settings_header_photo_height"
+        android:src="@drawable/ic_camera"
+        app:civ_border_color="@color/material_drawer_primary"
+        app:civ_border_width="@dimen/settings_header_photo_border"
+        app:civ_circle_background_color="@color/material_drawer_accent"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_header_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_header_layout"
+        android:layout_marginEnd="@dimen/standart_horizontal_margin"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

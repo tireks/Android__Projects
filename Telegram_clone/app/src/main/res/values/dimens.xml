@@ -4,6 +4,8 @@
     <dimen name="settings_header_photo_width">55dp</dimen>
     <dimen name="settings_header_photo_height">55dp</dimen>
     <dimen name="settings_header_photo_border">2dp</dimen>
+    <dimen name="settings_header_change_pic_btn_width">45dp</dimen>
+    <dimen name="settings_header_change_pic_btn_height">45dp</dimen>
 
 
 
@@ -13,9 +15,7 @@
     <dimen name="normal_text">14sp</dimen>
     <dimen name="vertical_large_margin">16dp</dimen>
     <dimen name="small_text">12sp</dimen>
-
-
-
+    <dimen name="settings_ripple_effect_radius">4dp</dimen>
 
 
 </resources>

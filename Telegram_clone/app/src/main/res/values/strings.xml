@@ -16,6 +16,8 @@
     <string name="settings_account_number_label">Tap to change</string>
     <string formatted="false" name="settings_account_nickname">\@EzioAssassin</string>
     <string name="settings_account_nickname_label">User\'s nickname</string>
+    <string name="settings_account_BIO">BIO</string>
+    <string name="settings_account_BIO_label">Write about yourself</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
