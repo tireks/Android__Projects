@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.EnterPhoneNumFragment">
+    tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/auth_input_phoneNum_EditText"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/authToolBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        style="@style/auth_edit_ext" />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/auth_btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_btn_auth_next2"
-        android:backgroundTint="@color/material_drawer_primary"
+        style="@style/mainToolbar"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/AuthDataContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="@dimen/standart_horizontal_margin"
-        android:contentDescription="@string/cd_auth_btn_next" />
+        app:layout_constraintTop_toBottomOf="@id/authToolBar"
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

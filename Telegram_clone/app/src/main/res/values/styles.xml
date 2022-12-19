@@ -41,5 +41,16 @@
         <item name="android:background">?attr/colorPrimary</item>
     </style>
 
+    <style name="auth_edit_ext">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/material_drawer_primary_text</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_margin">@dimen/standart_horizontal_margin</item>
+        <item name="android:padding">@dimen/appPadding</item>
+        <item name="android:inputType">phone</item>
+    </style>
+
 
 </resources>

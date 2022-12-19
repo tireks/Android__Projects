@@ -16,6 +16,7 @@
     <dimen name="vertical_large_margin">16dp</dimen>
     <dimen name="small_text">12sp</dimen>
     <dimen name="settings_ripple_effect_radius">4dp</dimen>
+    <dimen name="appPadding">5dp</dimen>
 
 
 </resources>
