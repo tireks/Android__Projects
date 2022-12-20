@@ -9,23 +9,17 @@ import android.widget.Toast
 import com.tirex_projs.telegram_clone.R
 import com.tirex_projs.telegram_clone.databinding.FragmentEnterPhoneNumBinding
 
-class EnterPhoneNumFragment : Fragment(R.layout.fragment_enter_phone_num) {
-    private var _binding: FragmentEnterPhoneNumBinding? = null
+class EnterPhoneNumFragment : BaseFragment<FragmentEnterPhoneNumBinding>() {
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentEnterPhoneNumBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun getViewBinding() = FragmentEnterPhoneNumBinding.inflate(layoutInflater)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.authBtnNext.setOnClickListener { sendCode() }
     }
+
     override fun onStart() {
         super.onStart()
-        binding.authBtnNext.setOnClickListener { sendCode() }
     }
 
     private fun sendCode() {
@@ -38,10 +32,4 @@ class EnterPhoneNumFragment : Fragment(R.layout.fragment_enter_phone_num) {
                 .commit()
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

@@ -9,27 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.tirex_projs.telegram_clone.R
+import com.tirex_projs.telegram_clone.databinding.FragmentChatsBinding
 import com.tirex_projs.telegram_clone.databinding.FragmentEnterAuthPhoneCodeBinding
 import com.tirex_projs.telegram_clone.databinding.FragmentEnterPhoneNumBinding
 import com.tirex_projs.telegram_clone.utilits.AppTextWatcher
 import com.tirex_projs.telegram_clone.utilits.showToast
 
-class EnterAuthPhoneCodeFragment : Fragment(R.layout.fragment_enter_auth_phone_code) {
-    private var _binding: FragmentEnterAuthPhoneCodeBinding? = null
-
+class EnterAuthPhoneCodeFragment : BaseFragment<FragmentEnterAuthPhoneCodeBinding>() {
+    override fun getViewBinding() = FragmentEnterAuthPhoneCodeBinding.inflate(layoutInflater)
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentEnterAuthPhoneCodeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onStart() {
         super.onStart()
         binding.authInputPassCodeEditText.addTextChangedListener(AppTextWatcher {
@@ -44,8 +33,6 @@ class EnterAuthPhoneCodeFragment : Fragment(R.layout.fragment_enter_auth_phone_c
         showToast("Ok")
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
+
 }

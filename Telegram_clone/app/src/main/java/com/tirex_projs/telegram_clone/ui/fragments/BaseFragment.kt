@@ -5,20 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 
-open class BaseFragment(private val layout: Int) : Fragment() {
-    private lateinit var mRootView: View
+abstract class BaseFragment<VB : ViewBinding> : Fragment() {
+    private var _binding: VB? = null
+    val binding get() = _binding!!
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
-        mRootView = inflater.inflate(layout, container, false)
-        return mRootView
+        _binding = getViewBinding()
+        return binding.root
     }
+
+    abstract fun getViewBinding(): VB
 
     override fun onStart() {
         super.onStart()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
