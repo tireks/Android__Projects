@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunctionality() {
-        if (false){  // false is a placeholder!!
+        if (true){  // false is a placeholder!!
             setSupportActionBar(mToolbar)
             mAppDrawer.create()
             supportFragmentManager.beginTransaction()

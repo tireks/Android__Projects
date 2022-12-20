@@ -12,14 +12,9 @@ import com.tirex_projs.telegram_clone.databinding.FragmentEnterPhoneNumBinding
 class EnterPhoneNumFragment : BaseFragment<FragmentEnterPhoneNumBinding>() {
     // This property is only valid between onCreateView and
     // onDestroyView.
-    override fun getViewBinding() = FragmentEnterPhoneNumBinding.inflate(layoutInflater)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.authBtnNext.setOnClickListener { sendCode() }
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     private fun sendCode() {
@@ -32,4 +27,9 @@ class EnterPhoneNumFragment : BaseFragment<FragmentEnterPhoneNumBinding>() {
                 .commit()
         }
     }
+    override fun inflateViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentEnterPhoneNumBinding {
+        return FragmentEnterPhoneNumBinding.inflate(inflater, container, false)    }
 }

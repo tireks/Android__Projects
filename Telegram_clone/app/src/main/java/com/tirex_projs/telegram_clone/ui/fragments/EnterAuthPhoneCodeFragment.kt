@@ -16,7 +16,6 @@ import com.tirex_projs.telegram_clone.utilits.AppTextWatcher
 import com.tirex_projs.telegram_clone.utilits.showToast
 
 class EnterAuthPhoneCodeFragment : BaseFragment<FragmentEnterAuthPhoneCodeBinding>() {
-    override fun getViewBinding() = FragmentEnterAuthPhoneCodeBinding.inflate(layoutInflater)
     // This property is only valid between onCreateView and
     // onDestroyView.
     override fun onStart() {
@@ -33,6 +32,12 @@ class EnterAuthPhoneCodeFragment : BaseFragment<FragmentEnterAuthPhoneCodeBindin
         showToast("Ok")
     }
 
+    override fun inflateViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentEnterAuthPhoneCodeBinding {
+        return FragmentEnterAuthPhoneCodeBinding.inflate(inflater, container, false)
+    }
 
 
 }
