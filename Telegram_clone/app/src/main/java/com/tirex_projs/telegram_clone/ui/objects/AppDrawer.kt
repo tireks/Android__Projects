@@ -13,6 +13,7 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.tirex_projs.telegram_clone.R
 import com.tirex_projs.telegram_clone.ui.fragments.SettingsFragment
+import com.tirex_projs.telegram_clone.utilits.replaceFragment
 
 class AppDrawer (val mainActivity: AppCompatActivity, private val toolbar: Toolbar){
     private lateinit var mDrawer: Drawer
@@ -85,9 +86,7 @@ class AppDrawer (val mainActivity: AppCompatActivity, private val toolbar: Toolb
                         drawerItem: IDrawerItem<*>,
                     ): Boolean {
                         when (position) {
-                            7 -> mainActivity.supportFragmentManager.beginTransaction()
-                                .addToBackStack(null)
-                                .replace(R.id.dataContainer, SettingsFragment()).commit()
+                            7 -> mainActivity.replaceFragment(SettingsFragment(), R.id.dataContainer)
                         }
                         return false
                     }

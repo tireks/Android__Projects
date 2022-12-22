@@ -7,6 +7,7 @@ import com.tirex_projs.telegram_clone.R
 import com.tirex_projs.telegram_clone.databinding.ActivityAuthControlBinding
 import com.tirex_projs.telegram_clone.ui.fragments.ChatsFragment
 import com.tirex_projs.telegram_clone.ui.fragments.EnterPhoneNumFragment
+import com.tirex_projs.telegram_clone.utilits.replaceFragment
 
 class AuthControlActivity : AppCompatActivity() {
 
@@ -24,8 +25,6 @@ class AuthControlActivity : AppCompatActivity() {
         mToolbar = mBiAuthBinding.authToolBar
         setSupportActionBar(mToolbar)
         title = getString(R.string.auth_toolbar_title)
-        supportFragmentManager.beginTransaction()
-            .add(R.id.AuthDataContainer, EnterPhoneNumFragment())
-            .commit()
+        replaceFragment(EnterPhoneNumFragment(), R.id.AuthDataContainer)
     }
 }

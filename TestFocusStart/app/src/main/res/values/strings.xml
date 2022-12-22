@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">TestFocusStart</string>
+
+
+    <string name="home_header_input_hint">Enter BIN</string>
+    <string name="home_input_hint">Waiting for BIN...</string>
+    <string name="home_tap_to_action">Tap to action</string>
+    <string name="home_rowScheme_topLabel">Scheme:</string>
+    <string name="home_rowBrand_topLabel">Brand:</string>
+    <string name="home_rowNumber_topLabel">Number:</string>
+    <string name="home_rowNumber_midLeftLabel">Length:</string>
+    <string name="home_rowNumber_midRightLabel">LUHN:</string>
+    <string name="home_rowType_topLabel">Type:</string>
+    <string name="home_rowPrepaid_topLabel">Prepaid:</string>
+    <string name="home_rowBank_topLabel">Bank info:</string>
+    <string name="home_rowBank_midLeftLabel">Name:</string>
+    <string name="home_rowBank_midRightLabel">City:</string>
+    <string name="home_subrowBank_midLabelURL">URL:</string>
+    <string name="home_subrowBank_midLabelPhone">Phone:</string>
+    <string name="home_rowCountry_topLabel">Country:</string>
+    <string name="home_rowCountry_midLabel_Currency">Currency:</string>
+    <string name="home_subrowCountry_midLabelLatitude">Latitude:</string>
+    <string name="home_subrowCountry_midLabelLongitude">Longitude:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

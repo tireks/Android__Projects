@@ -4,15 +4,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.auth.FirebaseAuth
 import com.tirex_projs.telegram_clone.activities.AuthControlActivity
 import com.tirex_projs.telegram_clone.databinding.ActivityMainBinding
 import com.tirex_projs.telegram_clone.ui.fragments.ChatsFragment
 import com.tirex_projs.telegram_clone.ui.objects.AppDrawer
+import com.tirex_projs.telegram_clone.utilits.replaceActivity
+import com.tirex_projs.telegram_clone.utilits.replaceFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mActivityMainBinding: ActivityMainBinding
     private lateinit var mAppDrawer: AppDrawer
     private lateinit var mToolbar: Toolbar
+    private lateinit var mAuthFirebase: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,19 +31,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunctionality() {
-        if (true){  // false is a placeholder!!
+        if (mAuthFirebase.currentUser != null){  // false is a placeholder!!
             setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.dataContainer, ChatsFragment()).commit()
+            replaceFragment(ChatsFragment(), R.id.dataContainer)
         } else {
-            val intent = Intent(this, AuthControlActivity::class.java)
-            startActivity(intent)
+            replaceActivity(AuthControlActivity())
         }
     }
 
     private fun initFields() {
         mToolbar = mActivityMainBinding.mainToolBar
         mAppDrawer = AppDrawer(this, mToolbar)
+        mAuthFirebase = FirebaseAuth.getInstance()
     }
 }

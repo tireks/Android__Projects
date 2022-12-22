@@ -1,13 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services'
 }
 
 android {
+    namespace 'com.tirex_projs.testfocusstart'
     compileSdk 33
+
     defaultConfig {
-        applicationId "com.tirex_projs.telegram_clone"
+        applicationId "com.tirex_projs.testfocusstart"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -35,25 +36,12 @@ android {
 }
 
 dependencies {
-    implementation 'com.mikepenz:materialdrawer:7.0.0'
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.material:material:1.7.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.annotation:annotation:1.5.0'
-    implementation 'com.mikepenz:materialdrawer-nav:7.0.0'
-    implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    //required support lib modules
-
-
-// Add for NavController support
-
 }
