@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="dividerColor">@color/dividerGray</item>
+        <!--<item name="windowActionBar">true</item>-->
 
     </style>
 </resources>

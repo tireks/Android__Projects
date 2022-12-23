@@ -54,7 +54,7 @@
             app:layout_constraintStart_toEndOf="@id/scheme_brand_row_topLabelName"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:id="@+id/scheme_brand_row_data_Name"
+            android:id="@+id/scheme_brand_row_data_scheme"
             style="@style/row_dataLabel_style"
             app:layout_constraintEnd_toStartOf="@id/scheme_brand_row_data_Brand"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,11 +64,11 @@
             android:id="@+id/scheme_brand_row_data_Brand"
             style="@style/row_dataLabel_style"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/scheme_brand_row_data_Name"
+            app:layout_constraintStart_toEndOf="@+id/scheme_brand_row_data_scheme"
             app:layout_constraintTop_toBottomOf="@id/scheme_brand_row_topLabelBrand"
             android:hint="@string/home_input_hint"/>
         <View
-            app:layout_constraintTop_toBottomOf="@id/scheme_brand_row_data_Name"
+            app:layout_constraintTop_toBottomOf="@id/scheme_brand_row_data_scheme"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             style="@style/dividerLight" />
@@ -352,13 +352,13 @@
             style="@style/row_dataDoubleLabel_style"
             android:hint="@string/home_input_hint"
             android:layout_width="0dp"
-            app:layout_constraintEnd_toStartOf="@id/country_row_dataLabelRightCity"
+            app:layout_constraintEnd_toStartOf="@id/country_row_dataLabelRightCurrency"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/country_row_midLabelLeft1" />
 
         <TextView
-            android:id="@+id/country_row_dataLabelRightCity"
+            android:id="@+id/country_row_dataLabelRightCurrency"
             style="@style/row_dataDoubleLabel_style"
             android:layout_width="0dp"
             android:hint="@string/home_input_hint"
@@ -396,11 +396,11 @@
             style="@style/row_dataLabel_style"
             android:hint="@string/home_input_hint"
             android:textColor="?attr/colorPrimaryVariant"
-            app:layout_constraintEnd_toStartOf="@id/countryCoords_row_data_Prepaid"
+            app:layout_constraintEnd_toStartOf="@id/countryCoords_row_data_Longtitude"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/countryCoords_row_topLabelLatitude" />
         <TextView
-            android:id="@+id/countryCoords_row_data_Prepaid"
+            android:id="@+id/countryCoords_row_data_Longtitude"
             style="@style/row_dataLabel_style"
             android:textColor="?attr/colorPrimaryVariant"
             app:layout_constraintEnd_toEndOf="parent"
@@ -415,7 +415,7 @@
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/countryCoords_row_data_Prepaid" />
+            app:layout_constraintTop_toBottomOf="@id/countryCoords_row_data_Longtitude" />
         <View
             app:layout_constraintTop_toBottomOf="@id/countryCoords_row_lowLabel"
             app:layout_constraintStart_toStartOf="parent"

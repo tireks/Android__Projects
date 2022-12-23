@@ -23,12 +23,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunctionality() {
-        setSupportActionBar(mToolbar)
+        //setSupportActionBar(mToolbar)
         replaceFragment(HomeFragment(), R.id.mainDataContainer)
     }
 
     private fun initFields() {
-        mToolbar = mainBinding.mainToolbar
+       // mToolbar = mainBinding.mainToolbar
     }
 
 }
