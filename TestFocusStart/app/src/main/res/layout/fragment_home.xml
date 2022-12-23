@@ -14,9 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/home_header_binInput_editText"
+        <!--android:id="@+id/home_header_binInput_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/standart_horizontal_margin"
@@ -27,7 +25,42 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TouchTargetSizeCheck"
-            tools:layout_editor_absoluteX="16dp" />
+            tools:layout_editor_absoluteX="16dp"-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_countries_list"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/standart_horizontal_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/home_header_binInput_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+
+                android:hint="@string/home_header_input_hint"
+                android:inputType="numberDecimal"
+                android:textSize="@dimen/normal_text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--<AutoCompleteTextView
+            android:id="@+id/home_header_binInput_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/standart_horizontal_margin"
+            android:background="@color/white"
+            android:gravity="center"
+            android:hint="@string/home_header_input_hint"
+            android:textSize="@dimen/super_large_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -46,6 +79,7 @@
             app:layout_constraintEnd_toStartOf="@+id/scheme_brand_row_topLabelBrand"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/scheme_brand_row_topLabelBrand"
             style="@style/row_topLabel_style"
@@ -53,25 +87,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/scheme_brand_row_topLabelName"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/scheme_brand_row_data_scheme"
             style="@style/row_dataLabel_style"
+            android:hint="@string/home_input_hint"
             app:layout_constraintEnd_toStartOf="@id/scheme_brand_row_data_Brand"
             app:layout_constraintStart_toStartOf="parent"
-            android:hint="@string/home_input_hint"
             app:layout_constraintTop_toBottomOf="@id/scheme_brand_row_topLabelName" />
+
         <TextView
             android:id="@+id/scheme_brand_row_data_Brand"
             style="@style/row_dataLabel_style"
+            android:hint="@string/home_input_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/scheme_brand_row_data_scheme"
-            app:layout_constraintTop_toBottomOf="@id/scheme_brand_row_topLabelBrand"
-            android:hint="@string/home_input_hint"/>
+            app:layout_constraintTop_toBottomOf="@id/scheme_brand_row_topLabelBrand" />
+
         <View
-            app:layout_constraintTop_toBottomOf="@id/scheme_brand_row_data_scheme"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/dividerLight"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/dividerLight" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scheme_brand_row_data_scheme" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -93,28 +130,28 @@
 
         <TextView
             android:id="@+id/number_row_midLabelLeft"
+            style="@style/mid_double_label_style"
             android:text="@string/home_rowNumber_midLeftLabel"
             app:layout_constraintEnd_toStartOf="@id/number_row_midLabelRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/number_row_topLabel"
-            style="@style/mid_double_label_style" />
+            app:layout_constraintTop_toBottomOf="@id/number_row_topLabel" />
 
         <TextView
             android:id="@+id/number_row_midLabelRight"
+            style="@style/mid_double_label_style"
             android:text="@string/home_rowNumber_midRightLabel"
             app:layout_constraintBottom_toBottomOf="@id/number_row_midLabelLeft"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/number_row_midLabelLeft"
             app:layout_constraintTop_toBottomOf="@id/number_row_topLabel"
-            app:layout_constraintTop_toTopOf="@id/number_row_midLabelLeft"
-            style="@style/mid_double_label_style" />
+            app:layout_constraintTop_toTopOf="@id/number_row_midLabelLeft" />
 
         <TextView
             android:id="@+id/number_row_dataLabelLeftLength"
             style="@style/row_dataDoubleLabel_style"
-            android:hint="@string/home_input_hint"
             android:layout_width="0dp"
+            android:hint="@string/home_input_hint"
             app:layout_constraintEnd_toStartOf="@id/number_row_dataLabelRightLUHN"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,11 +167,12 @@
             app:layout_constraintStart_toEndOf="@id/number_row_dataLabelLeftLength"
             app:layout_constraintTop_toBottomOf="@id/number_row_midLabelLeft"
             app:layout_constraintTop_toTopOf="@id/number_row_dataLabelLeftLength" />
+
         <View
-            app:layout_constraintTop_toBottomOf="@id/number_row_dataLabelLeftLength"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/dividerLight"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/dividerLight" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/number_row_dataLabelLeftLength" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,6 +190,7 @@
             app:layout_constraintEnd_toStartOf="@+id/type_prepaid_row_topLabelPrepaid"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/type_prepaid_row_topLabelPrepaid"
             style="@style/row_topLabel_style"
@@ -159,25 +198,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/type_prepaid_row_topLabelType"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/type_prepaid_row_data_Type"
             style="@style/row_dataLabel_style"
+            android:hint="@string/home_input_hint"
             app:layout_constraintEnd_toStartOf="@id/type_prepaid_row_data_Prepaid"
             app:layout_constraintStart_toStartOf="parent"
-            android:hint="@string/home_input_hint"
             app:layout_constraintTop_toBottomOf="@id/type_prepaid_row_topLabelType" />
+
         <TextView
             android:id="@+id/type_prepaid_row_data_Prepaid"
             style="@style/row_dataLabel_style"
+            android:hint="@string/home_input_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/type_prepaid_row_data_Type"
-            app:layout_constraintTop_toBottomOf="@id/type_prepaid_row_topLabelPrepaid"
-            android:hint="@string/home_input_hint"/>
+            app:layout_constraintTop_toBottomOf="@id/type_prepaid_row_topLabelPrepaid" />
+
         <View
-            app:layout_constraintTop_toBottomOf="@id/type_prepaid_row_data_Type"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/dividerLight"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/dividerLight" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/type_prepaid_row_data_Type" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -199,28 +241,28 @@
 
         <TextView
             android:id="@+id/bank_row_midLabelLeft1"
+            style="@style/mid_double_label_style"
             android:text="@string/home_rowBank_midLeftLabel"
             app:layout_constraintEnd_toStartOf="@id/bank_row_midLabelRight1"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bank_row_topLabel"
-            style="@style/mid_double_label_style" />
+            app:layout_constraintTop_toBottomOf="@id/bank_row_topLabel" />
 
         <TextView
             android:id="@+id/bank_row_midLabelRight1"
+            style="@style/mid_double_label_style"
             android:text="@string/home_rowBank_midRightLabel"
             app:layout_constraintBottom_toBottomOf="@id/bank_row_midLabelLeft1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/bank_row_midLabelLeft1"
             app:layout_constraintTop_toBottomOf="@id/bank_row_topLabel"
-            app:layout_constraintTop_toTopOf="@id/bank_row_midLabelLeft1"
-            style="@style/mid_double_label_style" />
+            app:layout_constraintTop_toTopOf="@id/bank_row_midLabelLeft1" />
 
         <TextView
             android:id="@+id/bank_row_dataLabelName"
             style="@style/row_dataDoubleLabel_style"
-            android:hint="@string/home_input_hint"
             android:layout_width="0dp"
+            android:hint="@string/home_input_hint"
             app:layout_constraintEnd_toStartOf="@id/bank_row_dataLabelRightCity"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -256,11 +298,11 @@
         <TextView
             android:id="@+id/bankURL_row_dataLabel"
             style="@style/row_dataLabel_style"
+            android:hint="@string/home_input_hint"
             android:textColor="?attr/colorPrimaryVariant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bankURL_row_topLabel"
-            android:hint="@string/home_input_hint"/>
+            app:layout_constraintTop_toBottomOf="@id/bankURL_row_topLabel" />
 
         <TextView
             android:id="@+id/bankURL_row_lowLabel"
@@ -291,25 +333,27 @@
         <TextView
             android:id="@+id/bankPhone_row_dataLabel"
             style="@style/row_dataLabel_style"
+            android:hint="@string/home_input_hint"
             android:textColor="?attr/colorPrimaryVariant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bankPhone_row_topLabel"
-            android:hint="@string/home_input_hint"/>
+            app:layout_constraintTop_toBottomOf="@id/bankPhone_row_topLabel" />
+
         <TextView
             android:id="@+id/bankPhone_row_lowLabel"
             style="@style/mid_double_label_style"
             android:text="@string/home_tap_to_action"
-            android:textStyle="italic"
             android:textColor="?attr/colorPrimaryVariant"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bankPhone_row_dataLabel" />
+
         <View
-            app:layout_constraintTop_toBottomOf="@id/bankPhone_row_lowLabel"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/dividerLight"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/dividerLight" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bankPhone_row_lowLabel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -330,28 +374,28 @@
 
         <TextView
             android:id="@+id/country_row_midLabelLeft1"
+            style="@style/mid_double_label_style"
             android:text="@string/home_rowBank_midLeftLabel"
             app:layout_constraintEnd_toStartOf="@id/country_row_midLabelRight1"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/country_row_topLabel"
-            style="@style/mid_double_label_style" />
+            app:layout_constraintTop_toBottomOf="@id/country_row_topLabel" />
 
         <TextView
             android:id="@+id/country_row_midLabelRight1"
+            style="@style/mid_double_label_style"
             android:text="@string/home_rowCountry_midLabel_Currency"
             app:layout_constraintBottom_toBottomOf="@id/country_row_midLabelLeft1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/country_row_midLabelLeft1"
             app:layout_constraintTop_toBottomOf="@id/country_row_topLabel"
-            app:layout_constraintTop_toTopOf="@id/country_row_midLabelLeft1"
-            style="@style/mid_double_label_style" />
+            app:layout_constraintTop_toTopOf="@id/country_row_midLabelLeft1" />
 
         <TextView
             android:id="@+id/country_row_dataLabelName"
             style="@style/row_dataDoubleLabel_style"
-            android:hint="@string/home_input_hint"
             android:layout_width="0dp"
+            android:hint="@string/home_input_hint"
             app:layout_constraintEnd_toStartOf="@id/country_row_dataLabelRightCurrency"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -383,6 +427,7 @@
             app:layout_constraintEnd_toStartOf="@+id/countryCoords_row_topLabelLongitude"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/countryCoords_row_topLabelLongitude"
             style="@style/mid_double_label_style"
@@ -399,14 +444,16 @@
             app:layout_constraintEnd_toStartOf="@id/countryCoords_row_data_Longtitude"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/countryCoords_row_topLabelLatitude" />
+
         <TextView
             android:id="@+id/countryCoords_row_data_Longtitude"
             style="@style/row_dataLabel_style"
+            android:hint="@string/home_input_hint"
             android:textColor="?attr/colorPrimaryVariant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/countryCoords_row_data_Latitude"
-            app:layout_constraintTop_toBottomOf="@id/countryCoords_row_topLabelLongitude"
-            android:hint="@string/home_input_hint"/>
+            app:layout_constraintTop_toBottomOf="@id/countryCoords_row_topLabelLongitude" />
+
         <TextView
             android:id="@+id/countryCoords_row_lowLabel"
             style="@style/mid_double_label_style"
@@ -416,11 +463,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/countryCoords_row_data_Longtitude" />
+
         <View
-            app:layout_constraintTop_toBottomOf="@id/countryCoords_row_lowLabel"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/dividerLight"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/dividerLight" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/countryCoords_row_lowLabel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
