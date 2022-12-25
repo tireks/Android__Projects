@@ -13,7 +13,6 @@ import io.reactivex.disposables.Disposable
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     var disposableHome: Disposable? = null
     private var _binding: VB? = null
-    lateinit var adapter: ArrayAdapter<String>
     val binding get() = _binding!!
     val binListApiService by lazy {
         BinListApiService.create()

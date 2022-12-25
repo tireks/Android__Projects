@@ -21,6 +21,7 @@
     <string name="home_rowCountry_midLabel_Currency">Currency:</string>
     <string name="home_subrowCountry_midLabelLatitude">Latitude:</string>
     <string name="home_subrowCountry_midLabelLongitude">Longitude:</string>
+    <string name="home_menu_delete_history">Delete history</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

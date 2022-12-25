@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/home_pic_acmenu"
+        android:title=""
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/home_menu_btn_delete_history"
+                android:icon="@drawable/home_pic_ac_menu_delete_his"
+                android:title="@string/home_menu_delete_history"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+
+</menu>
