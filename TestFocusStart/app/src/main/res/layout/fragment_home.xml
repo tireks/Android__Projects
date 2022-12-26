@@ -282,18 +282,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bankURL_row"
-        style="@style/subRow_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bank_row">
+        app:layout_constraintTop_toBottomOf="@id/bank_row"
+        style="@style/subRow_style_action"
+        android:background="@drawable/ripple_effect"
+        >
 
         <TextView
             android:id="@+id/bankURL_row_topLabel"
-            style="@style/mid_double_label_style"
             android:text="@string/home_subrowBank_midLabelURL"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/mid_double_label_style"
+            />
 
         <TextView
             android:id="@+id/bankURL_row_dataLabel"
@@ -317,7 +320,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bankPhone_row"
-        style="@style/subRow_style"
+        style="@style/subRow_style_action"
+        android:background="@drawable/ripple_effect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bankURL_row">
@@ -415,7 +419,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/countryCoords_row"
-        style="@style/subRow_style"
+        style="@style/subRow_style_action"
+        android:background="@drawable/ripple_effect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/country_row">

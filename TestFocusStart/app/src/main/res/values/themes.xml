@@ -15,6 +15,7 @@
         <!-- Customize your theme here. -->
         <item name="dividerColor">@color/dividerGray</item>
         <item name="actionMenuTextColor">@color/acMenuGray</item>
+        <item name="rippleColor">@color/rippleEffectColor</item>
         <!--<item name="windowActionBar">true</item>-->
 
 

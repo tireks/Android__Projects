@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dividerGray">#313A3A3A</color>
     <color name="acMenuGray">#FF6A6A6A</color>
+    <color name="rippleEffectColor">#77171616</color>
 </resources>
