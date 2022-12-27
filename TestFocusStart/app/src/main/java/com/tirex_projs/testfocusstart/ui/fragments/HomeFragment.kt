@@ -33,7 +33,6 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
         stringsArr = arrayListOf()
         importHistory()
         adapter = AppArrayAdapter(requireActivity(),android.R.layout.simple_list_item_1,stringsArr)
-        //adapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_list_item_1,stringsArr)
         binding.homeHeaderBinInputEditText.threshold=0
         binding.homeHeaderBinInputEditText.setAdapter(adapter)
         binding.homeHeaderBinInputEditText.addTextChangedListener(AppTextWatcher {
@@ -135,14 +134,18 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
             }
             binding.bankPhoneRow ->{
                 if (binding.bankPhoneRowDataLabel.text.toString().isNotEmpty()){
-                    //binding.bankPhoneRowDataLabel.text = binding.bankPhoneRowDataLabel.text.substring(1)
                     dialPhoneNumber(binding.bankPhoneRowDataLabel.text.toString())
                 }
             }
             binding.countryCoordsRow ->{
                 if ((binding.countryCoordsRowDataLatitude.text.toString().isNotEmpty()) and
                     (binding.countryCoordsRowDataLongtitude.text.toString().isNotEmpty())){
-                    //showMap("geo:47.6,-122.3")
+                    /*showMap(binding.countryCoordsRowDataLatitude.text.toString() + ".0" + ","
+                            + binding.countryCoordsRowDataLongtitude.text.toString() + ".0")*/
+                    var lat = binding.countryCoordsRowDataLatitude.text.toString() + ".0"
+                    var long = binding.countryCoordsRowDataLongtitude.text.toString() + ".0"
+                    showMap("geo:$lat,$long?q=$lat,$long&z=16")
+
                 }
             }
         }
@@ -162,9 +165,10 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
         startActivity(intent)
     }
 
-    fun showMap(geoLocation: Uri) {
+    private fun showMap(geoLocationStr: String) {
+        val  geoLocationUri = Uri.parse(geoLocationStr)
         val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = geoLocation
+            data = geoLocationUri
         }
         if (intent.resolveActivity(requireActivity().packageManager) != null) {
             requireActivity().startActivity(intent)
