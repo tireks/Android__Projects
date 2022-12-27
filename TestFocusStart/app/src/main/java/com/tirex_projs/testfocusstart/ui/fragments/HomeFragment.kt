@@ -8,97 +8,89 @@ import android.net.Uri
 import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.view.*
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.viewbinding.ViewBinding
 import com.tirex_projs.testfocusstart.R
 import com.tirex_projs.testfocusstart.databinding.FragmentHomeBinding
+import com.tirex_projs.testfocusstart.model.CardModel
 import com.tirex_projs.testfocusstart.utilits.AppArrayAdapter
+import com.tirex_projs.testfocusstart.utilits.AppHistoryWorker
 import com.tirex_projs.testfocusstart.utilits.AppTextWatcher
 import com.tirex_projs.testfocusstart.utilits.showToast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
-    lateinit var stringsArr: ArrayList<String>
-    private lateinit var preferencesStorage : SharedPreferences
-    private lateinit var editorStorage : SharedPreferences.Editor;
-    private lateinit var adapter: ArrayAdapter<String>
+open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener, OnItemClickListener {
+    private lateinit var stringsArr: ArrayList<String>
+    private lateinit var preferencesStorage: SharedPreferences
+    private lateinit var editorStorage: SharedPreferences.Editor
+    private lateinit var adapter: AppArrayAdapter<String>
+    private var bindListTV: ArrayList<TextView> = arrayListOf()
+    private lateinit var historyWorker: AppHistoryWorker
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        preferencesStorage  =
-            requireActivity().getSharedPreferences("com.tirex_projs.testfocusstart.SEARCH_HISTORY", Context.MODE_PRIVATE)
+        var emptySearch: Boolean = true
+        preferencesStorage =
+            requireActivity().getSharedPreferences(
+                "com.tirex_projs.testfocusstart.SEARCH_HISTORY",
+                Context.MODE_PRIVATE
+            )
         editorStorage = preferencesStorage.edit()
         stringsArr = arrayListOf()
-        importHistory()
-        adapter = AppArrayAdapter(requireActivity(),android.R.layout.simple_list_item_1,stringsArr)
-        binding.homeHeaderBinInputEditText.threshold=0
+        adapter =
+            AppArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, stringsArr)
+        historyWorker = AppHistoryWorker(preferencesStorage,stringsArr, editorStorage, adapter)
+        historyWorker.importHistory()
+        binding.homeHeaderBinInputEditText.threshold = 0
         binding.homeHeaderBinInputEditText.setAdapter(adapter)
         binding.homeHeaderBinInputEditText.addTextChangedListener(AppTextWatcher {
             val string = binding.homeHeaderBinInputEditText.text.toString()
-            if (string.length == 8) {
+            if ((string.length == 8) and (emptySearch)) {
+                emptySearch = false
                 beginSearch(string)
+            } else if ((string.length != 8) and (!emptySearch)) {
+                emptySearch = true
+                screenClear()
             }
         })
+        binding.homeHeaderBinInputEditText.onItemClickListener = this
         binding.bankURLRow.setOnClickListener(this)
         binding.bankPhoneRow.setOnClickListener(this)
         binding.countryCoordsRow.setOnClickListener(this)
+        bindListTV = arrayListOf(
+            binding.schemeBrandRowDataScheme,
+            binding.schemeBrandRowDataBrand,
+            binding.numberRowDataLabelLeftLength,
+            binding.numberRowDataLabelRightLUHN,
+            binding.typePrepaidRowDataType,
+            binding.typePrepaidRowDataPrepaid,
+            binding.bankRowDataLabelName,
+            binding.bankRowDataLabelRightCity,
+            binding.bankURLRowDataLabel,
+            binding.bankPhoneRowDataLabel,
+            binding.countryRowDataLabelName,
+            binding.countryRowDataLabelRightCurrency,
+            binding.countryCoordsRowDataLongtitude,
+            binding.countryCoordsRowDataLatitude,
+        )
     }
 
-    private fun importHistory() {
-        if (preferencesStorage.contains("SIZE") && (preferencesStorage.getInt("SIZE", 0) != 0)){
-            var historySize : Int = preferencesStorage.getInt("SIZE", 0)
-            var counter = 0;
-            var tempString : String = ""
-            while (counter < historySize){
-                if (preferencesStorage.contains("SLOT${counter+1}")){
-                    tempString = preferencesStorage.getString("SLOT${counter+1}", "111").toString()
-                    stringsArr.add(tempString)
-                }
-                counter++
-            }
+    private fun screenClear() {
+        for (i in bindListTV.indices){
+            bindListTV[i].text = ""
         }
     }
 
-    private fun exportHistory(cardNum: String){
-        var currentSize : Int = 0
-        if (!stringsArr.contains(cardNum)){
-            adapter.add(cardNum)
-            adapter.notifyDataSetChanged()
-            if (preferencesStorage.contains("SIZE")){
-                currentSize = preferencesStorage.getInt("SIZE", 0)
-                currentSize++
-                editorStorage.putInt("SIZE", currentSize)
-
-            } else {
-                currentSize = 1
-                editorStorage.putInt("SIZE", 1)
-            }
-            editorStorage.putString("SLOT${currentSize}", cardNum)
-            editorStorage.commit()
-        }
-
-
+    override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        beginSearch(binding.homeHeaderBinInputEditText.text.toString())
     }
-
-    private fun deleteHistory(){
-        var currentSize : Int = 0
-        if (preferencesStorage.contains("SIZE")){
-            currentSize = preferencesStorage.getInt("SIZE", 0)
-            editorStorage.putInt("SIZE", 0)
-        }
-        while (currentSize > 0){
-            if (preferencesStorage.contains("SLOT${currentSize}")){
-                editorStorage.remove("SLOT${currentSize}")
-                stringsArr.remove(stringsArr[currentSize-1])
-                adapter.notifyDataSetChanged()
-            }
-            currentSize--
-        }
-        editorStorage.commit()
-    }
-
 
     override fun inflateViewBinding(
         inflater: LayoutInflater,
@@ -106,10 +98,12 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
     ): FragmentHomeBinding {
         return FragmentHomeBinding.inflate(inflater, container, false)
     }
+
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         activity?.menuInflater?.inflate(R.menu.home_action_menu, menu)
     }
@@ -117,7 +111,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.home_menu_btn_delete_history -> {
-                deleteHistory()
+                historyWorker.deleteHistory()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -126,24 +120,23 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
     }
 
     override fun onClick(p0: View?) {
-        when (p0){
+        when (p0) {
             binding.bankURLRow -> {
-                if (binding.bankURLRowDataLabel.text.toString().isNotEmpty()){
-                   openWebPage("https://" + binding.bankURLRowDataLabel.text.toString())
+                if (binding.bankURLRowDataLabel.text.toString() != "---") {
+                    openWebPage("https://" + binding.bankURLRowDataLabel.text.toString())
                 }
             }
-            binding.bankPhoneRow ->{
-                if (binding.bankPhoneRowDataLabel.text.toString().isNotEmpty()){
+            binding.bankPhoneRow -> {
+                if (binding.bankPhoneRowDataLabel.text.toString()!= "---") {
                     dialPhoneNumber(binding.bankPhoneRowDataLabel.text.toString())
                 }
             }
-            binding.countryCoordsRow ->{
-                if ((binding.countryCoordsRowDataLatitude.text.toString().isNotEmpty()) and
-                    (binding.countryCoordsRowDataLongtitude.text.toString().isNotEmpty())){
-                    /*showMap(binding.countryCoordsRowDataLatitude.text.toString() + ".0" + ","
-                            + binding.countryCoordsRowDataLongtitude.text.toString() + ".0")*/
-                    var lat = binding.countryCoordsRowDataLatitude.text.toString() + ".0"
-                    var long = binding.countryCoordsRowDataLongtitude.text.toString() + ".0"
+            binding.countryCoordsRow -> {
+                if ((binding.countryCoordsRowDataLatitude.text.toString()!= "---") and
+                    (binding.countryCoordsRowDataLongtitude.text.toString()!= "---")
+                ) {
+                    val lat = binding.countryCoordsRowDataLatitude.text.toString() + ".0"
+                    val long = binding.countryCoordsRowDataLongtitude.text.toString() + ".0"
                     showMap("geo:$lat,$long?q=$lat,$long&z=16")
 
                 }
@@ -159,14 +152,15 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
         }
     }
 
-    private fun dialPhoneNumber(phoneNumber: String){
+    private fun dialPhoneNumber(phoneNumber: String) {
         val intent = Intent(Intent.ACTION_DIAL)
         intent.data = Uri.parse("tel:$phoneNumber")
         startActivity(intent)
+
     }
 
     private fun showMap(geoLocationStr: String) {
-        val  geoLocationUri = Uri.parse(geoLocationStr)
+        val geoLocationUri = Uri.parse(geoLocationStr)
         val intent = Intent(Intent.ACTION_VIEW).apply {
             data = geoLocationUri
         }
@@ -177,6 +171,7 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
 
     private fun beginSearch(cardNum: String) {
         showToast("Ok")
+        screenClear()
         disposableHome = binListApiService.getCard("https://lookup.binlist.net/$cardNum")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -199,11 +194,19 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
                     binding.countryRowDataLabelRightCurrency.text = card.country.currency
                     binding.countryCoordsRowDataLatitude.text = card.country.latitude
                     binding.countryCoordsRowDataLongtitude.text = card.country.longitude
-                    //adapter.add(cardNum)/////
-                    exportHistory(cardNum)
+                    historyWorker.exportHistory(cardNum)
+                    placeholder()
                 },
                 { error -> Toast.makeText(this.context, error.message, Toast.LENGTH_SHORT).show() }
             )
+    }
+
+    private fun placeholder() {
+        for (i in bindListTV.indices) {
+            if (bindListTV[i].text.toString().isEmpty()){
+                bindListTV[i].text = "---"
+            }
+        }
     }
 
 
@@ -212,10 +215,6 @@ open class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListe
         disposableHome?.dispose()
     }
 
-
-    /*todo очистка полей при изменении бина -- думаю сделать специальный воркер, обрабатывающий работу с биндингом*/
-    /*TODO сделать кнопки активными*/
-    /*TODO посмотреть ка выполнить последний пункт*/
     /*TODO рефактор дизайна*/
     /*TODO рефактор кода этого фрагмента*/
 

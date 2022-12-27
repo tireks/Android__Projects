@@ -16,7 +16,6 @@ class AppArrayAdapter<T>(
     }
 
     init {
-        //Log.v("Krzys", "Adapter created $filter")
         items = objects
     }
 
